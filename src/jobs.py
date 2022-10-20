@@ -18,8 +18,10 @@ def read(path: str):
     """
 
     try:
-        with open('src/jobs.csv', encoding='utf-8') as file:
-            jobs = csv.DictReader(file, delimiter=',', quotechar='"')
+        with open(path, mode='r', encoding='utf-8') as file:
+            jobs_reader = csv.DictReader(file, delimiter=',', quotechar='"')
+            jobs = [row for row in jobs_reader]
+
     except FileNotFoundError:
         print('Arquivo não encontrado!')
-    return [jobs]
+    return jobs
